@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Priset : MonoBehaviour
+public class Priest : MonoBehaviour
 {
     public float moveAmount;
     public float moveTime;
