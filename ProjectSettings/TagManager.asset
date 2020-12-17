@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 960109051
+    locked: 0
+  - name: Peak
+    uniqueID: 2101072785
+    locked: 0
+  - name: Player
+    uniqueID: 2827370401
+    locked: 0
+  - name: UI
+    uniqueID: 4007892167
+    locked: 0

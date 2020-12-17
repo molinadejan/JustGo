@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Priset : MonoBehaviour
@@ -7,15 +8,17 @@ public class Priset : MonoBehaviour
     public float moveTime;
     public Ease ease;
 
-    /*
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P)) Move();
-    }
-    */
+    [SerializeField] private List<Vector3> dirList;
 
-    private void Move()
+    public List<Vector3> DirList { get { return dirList; } }
+
+    private void Awake()
     {
-        transform.DOMove(transform.position + Vector3.up * moveAmount, moveTime).SetEase(ease);
+        dirList = new List<Vector3>();
+    }
+
+    private void Move(Vector3 dir)
+    {
+        transform.DOMove(transform.position + dir * moveAmount, moveTime).SetEase(ease);
     }
 }
