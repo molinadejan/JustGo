@@ -17,7 +17,9 @@ public class UIManager : MonoBehaviour
     // ArrowList의 Arrow 이미지
     // 활성화/비활성화로 조정
     // 최대 20개까지 설정 가능
-    [SerializeField] private Image[] arrowImages;
+    [SerializeField] private List<Image> arrowImages;
+    public List<Image> ArrowImages => arrowImages;
+
     [SerializeField] private GameObject ArrowUI;
 
     private Priest curSelectPriest = null;
@@ -29,7 +31,7 @@ public class UIManager : MonoBehaviour
 
     private void SetArrowList(List<Vector2> list)
     {
-        for(int i = 0; i < arrowImages.Length; i++)
+        for(int i = 0; i < arrowImages.Count; i++)
         {
             if (i < list.Count)
             {
@@ -63,7 +65,7 @@ public class UIManager : MonoBehaviour
     {
         int index = curSelectPriest.DirList.Count;
 
-        if (index >= arrowImages.Length) return;
+        if (index >= arrowImages.Count) return;
 
         arrowImages[index].gameObject.SetActive(true);
 
@@ -87,6 +89,13 @@ public class UIManager : MonoBehaviour
             arrowImages[index].sprite = arrowRight;
             curSelectPriest.DirList.Add(Vector3.right);
         }
+    }
+
+    public void MinusArrow(Image image)
+    {
+        int index = arrowImages.IndexOf(image);
+        arrowImages.RemoveAt(index);
+        curSelectPriest.DirList.RemoveAt(index);
     }
 
     public void ArrowUIEnable(Priest priest)
