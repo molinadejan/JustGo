@@ -85,20 +85,26 @@ public class Priest : QueueObject
 
     private void OnMouseUp() => UIManager.Instance.ArrowUIEnable(this);
 
+    private bool isDead = false;
+
     private void SetDie()
     {
         isOver = true;
         animator.SetTrigger("Die");
+
+        isDead = true;
     }
 
     public override void ResetFunc()
     {
         isOver = false;
 
-        if(dirList.Count > 0) animator.SetTrigger("Idle");
+        if(dirList.Count > 0 && isDead) animator.SetTrigger("Idle");
 
         transform.position = startPos;
         listIndex = 0;
+
+        isDead = false;
     }
 
     public override IEnumerator PlayOneTurnAction()
