@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class UIManager : MonoBehaviour
     // 최대 20개까지 설정 가능
     [SerializeField] private List<Arrow> arrows;
     [SerializeField] private GameObject arrowUI;
-    [SerializeField] private Scrollbar arrowScrollBar;
+    [SerializeField] private Scrollbar arrowScrollbar;
 
     private Priest curSelectPriest = null;
 
@@ -25,7 +26,7 @@ public class UIManager : MonoBehaviour
 
     private void SetArrowList(List<Vector3> list)
     {
-        for(int i = 0; i < arrows.Count; i++)
+        for (int i = 0; i < arrows.Count; i++)
         {
             if (i < list.Count)
             {
@@ -52,7 +53,15 @@ public class UIManager : MonoBehaviour
 
         curSelectPriest.AddDirList(dir);
 
-        arrowScrollBar.value = 0.99f;
+        StartCoroutine(ChangeScrollbarValue());
+    }
+
+    private IEnumerator ChangeScrollbarValue()
+    {
+        yield return null;
+        yield return null;
+
+        arrowScrollbar.value = 1f;
     }
 
     public void MinusArrow(Arrow arrow)
