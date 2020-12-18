@@ -17,10 +17,9 @@ public class UIManager : MonoBehaviour
     // ArrowList의 Arrow 이미지
     // 활성화/비활성화로 조정
     // 최대 20개까지 설정 가능
-    [SerializeField] private List<Image> arrowImages;
-    public List<Image> ArrowImages => arrowImages;
-
-    [SerializeField] private GameObject ArrowUI;
+    [SerializeField] private List<Arrow> arrows;
+    [SerializeField] private GameObject arrowUI;
+    [SerializeField] private Scrollbar arrowScrollBar;
 
     private Priest curSelectPriest = null;
 
@@ -29,34 +28,41 @@ public class UIManager : MonoBehaviour
         if (instance == null) instance = this;
     }
 
+    private void Start()
+    {
+        Input.multiTouchEnabled = false;
+    }
+
     private void SetArrowList(List<Vector2> list)
     {
-        for(int i = 0; i < arrowImages.Count; i++)
+        for(int i = 0; i < arrows.Count; i++)
         {
             if (i < list.Count)
             {
-                arrowImages[i].gameObject.SetActive(true);
+                arrows[i].gameObject.SetActive(true);
 
                 if (list[i] == Vector2.up)
                 {
-                    arrowImages[i].sprite = arrowUp;
+                    arrows[i].SetSprite(arrowUp);
                 }
                 else if (list[i] == Vector2.down)
                 {
-                    arrowImages[i].sprite = arrowDown;
+                    arrows[i].SetSprite(arrowDown);
                 }
                 else if (list[i] == Vector2.left)
                 {
-                    arrowImages[i].sprite = arrowLeft;
+                    arrows[i].SetSprite(arrowLeft);
                 }
                 else // list[i] == Vecot2.right
                 {
-                    arrowImages[i].sprite = arrowRight;
+                    arrows[i].SetSprite(arrowRight);
                 }
+
+                arrows[i].SetText((i + 1).ToString());
             }
             else
             {
-                arrowImages[i].gameObject.SetActive(false);
+                arrows[i].gameObject.SetActive(false);
             }
         }
     }
@@ -65,37 +71,42 @@ public class UIManager : MonoBehaviour
     {
         int index = curSelectPriest.DirList.Count;
 
-        if (index >= arrowImages.Count) return;
+        if (index >= arrows.Count) return;
 
-        arrowImages[index].gameObject.SetActive(true);
+        arrows[index].gameObject.SetActive(true);
 
         if (dir.Equals("up"))
         {
-            arrowImages[index].sprite = arrowUp;
+            arrows[index].SetSprite(arrowUp);
             curSelectPriest.DirList.Add(Vector3.up);
         }
         else if(dir.Equals("down"))
         {
-            arrowImages[index].sprite = arrowDown;
+            arrows[index].SetSprite(arrowDown);
             curSelectPriest.DirList.Add(Vector3.down);
         }
         else if(dir.Equals("left"))
         {
-            arrowImages[index].sprite = arrowLeft;
+            arrows[index].SetSprite(arrowLeft);
             curSelectPriest.DirList.Add(Vector3.left);
         }
         else // dir.Equals("right")
         {
-            arrowImages[index].sprite = arrowRight;
+            arrows[index].SetSprite(arrowRight);
             curSelectPriest.DirList.Add(Vector3.right);
         }
+
+        arrows[index].SetText((index + 1).ToString());
+
+        arrowScrollBar.value = 1f;
     }
 
-    public void MinusArrow(Image image)
+    public void MinusArrow(Arrow arrow)
     {
-        int index = arrowImages.IndexOf(image);
-        arrowImages.RemoveAt(index);
+        int index = arrows.IndexOf(arrow);
+
         curSelectPriest.DirList.RemoveAt(index);
+        SetArrowList(curSelectPriest.DirList);
     }
 
     public void ArrowUIEnable(Priest priest)
@@ -104,13 +115,13 @@ public class UIManager : MonoBehaviour
         {
             curSelectPriest = priest;
             SetArrowList(priest.DirList);
-            ArrowUI.SetActive(true);
+            arrowUI.SetActive(true);
         }
     }
 
     public void ArrowUIDisable()
     {
         curSelectPriest = null;
-        ArrowUI.SetActive(false);
+        arrowUI.SetActive(false);
     }
 }

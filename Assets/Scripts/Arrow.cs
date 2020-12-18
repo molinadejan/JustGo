@@ -1,22 +1,16 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Arrow : MonoBehaviour, IPointerUpHandler
+public class Arrow : MonoBehaviour
 {
-    private Image image;
+    [SerializeField] private Image image;
+    [SerializeField] private Text countText;
 
-    private void Awake()
-    {
-        image = GetComponent<Image>();
-    }
+    public void SetSprite(Sprite sprite) => image.sprite = sprite;
+    public void SetText(string text) => countText.text = text;
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void ArrowButton()
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            UIManager.Instance.MinusArrow(image);
-            gameObject.SetActive(false);
-        }
+        UIManager.Instance.MinusArrow(this);
     }
 }
