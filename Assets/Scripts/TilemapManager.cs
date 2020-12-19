@@ -10,6 +10,7 @@ public class TilemapManager : MonoBehaviour
 
     [SerializeField] private Tilemap peaks;
     [SerializeField] private Tilemap walls;
+    [SerializeField] private Tilemap goldChests;
     
     private void Awake()
     {
@@ -30,5 +31,13 @@ public class TilemapManager : MonoBehaviour
         cellPos.z = 0;
 
         return walls.HasTile(cellPos);
+    }
+
+    public bool IsOnChest(Vector3 pos)
+    {
+        Vector3Int cellPos = goldChests.WorldToCell(pos);
+        cellPos.z = 0;
+
+        return goldChests.HasTile(cellPos);
     }
 }

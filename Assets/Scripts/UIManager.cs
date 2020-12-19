@@ -92,6 +92,7 @@ public class UIManager : MonoBehaviour
     {
         curSelectPriest = null;
         arrowUI.SetActive(false);
+
         highlight.SetActive(false);
     }
 }
