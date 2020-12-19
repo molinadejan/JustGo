@@ -14,7 +14,9 @@ public class GameManager : MonoBehaviour
     private List<Priest> priests = new List<Priest>();
     private GameObject[] chests;
 
+    // 
     public UnityEvent playEvent;
+    public UnityEvent playEndEvent;
     public UnityEvent resetEvent;
 
     private WaitForSeconds waitForSeconds;
@@ -47,6 +49,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(PlayQueueCor());
     }
 
+    public void EndGame()
+    {
+        playEndEvent?.Invoke();
+    }
+
     public void ReSetGame()
     {
         resetEvent?.Invoke();
@@ -75,7 +82,7 @@ public class GameManager : MonoBehaviour
 
         yield return waitForSeconds;
 
-        ReSetGame();
+        EndGame();
     }
 
     private bool CheckPriestsAllDie()
@@ -92,7 +99,6 @@ public class GameManager : MonoBehaviour
             if (chests[i].activeSelf)
                 return false;
 
-        Debug.Log("Game Clear");
         return true;
     }
 }
