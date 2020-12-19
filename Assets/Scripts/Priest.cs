@@ -47,6 +47,9 @@ public class Priest : QueueObject
     private MoveDele moveDele;
     private CheckPeakDele checkPeakDele;
 
+    private bool isDead;
+    public bool IsDead => isDead;
+
     private void Awake()
     {
         startPos = transform.position;
@@ -77,6 +80,9 @@ public class Priest : QueueObject
 
         yield return waitUntil;
         yield return waitForSeconds;
+
+        TilemapManager.Instance.IsOnChest(transform.position);
+
         yield return null;
     }
 
@@ -87,7 +93,14 @@ public class Priest : QueueObject
 
     private IEnumerator CheckPeakCor()
     {
-        if (TilemapManager.Instance.IsOnPeak(transform.position)) SetDie();
+        if (TilemapManager.Instance.IsOnPeak(transform.position))
+        {
+            // Die
+            isOver = true;
+            isDead = true;
+            animator.Play("Die");
+        }
+
         yield return null;
     }
 
@@ -132,15 +145,10 @@ public class Priest : QueueObject
         UIManager.Instance.ArrowUIEnable(this);
     }
 
-    private void SetDie()
-    {
-        isOver = true;
-        animator.Play("Die");
-    }
-
     public override void ResetFunc()
     {
         isOver = dirList.Count == 0 ? true : false;
+        isDead = false;
         animator.Play("Idle");
 
         transform.position = startPos;

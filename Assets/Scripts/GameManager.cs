@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<QueueObject> qObjects;
     private List<Priest> priests = new List<Priest>();
+    private GameObject[] chests;
 
     public UnityEvent playEvent;
     public UnityEvent resetEvent;
@@ -31,6 +32,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Input.multiTouchEnabled = false;
+        StartCoroutine(StartCor());
+    }
+
+    private IEnumerator StartCor()
+    {
+        yield return null;
+        chests = GameObject.FindGameObjectsWithTag("GoldChest");
     }
 
     public void PlayQueue()
@@ -43,26 +51,48 @@ public class GameManager : MonoBehaviour
     {
         resetEvent?.Invoke();
         QueueObject.resetDele.Invoke();
+
+        for (int i = 0; i < chests.Length; i++) chests[i].SetActive(true);
     }
 
     private IEnumerator PlayQueueCor()
     {
         yield return waitForSeconds;
 
-        while (!CheckPriestsAllOver())
+        while (!CheckPriestsAllDie() && !CheckGetAllChests())
+        {
             for (int i = 0; i < qObjects.Count; i++)
-                if(!qObjects[i].IsOver) yield return StartCoroutine(qObjects[i].PlayOneTurnAction());
+            {
+                if (!qObjects[i].IsOver)
+                {
+                    yield return StartCoroutine(qObjects[i].PlayOneTurnAction());
+
+                    if (CheckGetAllChests())
+                        break;
+                }
+            }
+        }
 
         yield return waitForSeconds;
 
         ReSetGame();
     }
 
-    private bool CheckPriestsAllOver()
+    private bool CheckPriestsAllDie()
     {
         for (int i = 0; i < priests.Count; i++)
             if (!priests[i].IsOver) return false;
 
+        return true;
+    }
+
+    private bool CheckGetAllChests()
+    {
+        for (int i = 0; i < chests.Length; i++)
+            if (chests[i].activeSelf)
+                return false;
+
+        Debug.Log("Game Clear");
         return true;
     }
 }
