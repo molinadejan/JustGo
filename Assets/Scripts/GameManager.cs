@@ -14,12 +14,13 @@ public class GameManager : MonoBehaviour
     private List<Priest> priests = new List<Priest>();
     private GameObject[] chests;
 
-    // 
     public UnityEvent playEvent;
-    public UnityEvent playEndEvent;
+    public UnityEvent successEvent;
     public UnityEvent resetEvent;
 
     private WaitForSeconds waitForSeconds;
+
+    private bool isGameClear;
 
     private void Awake()
     {
@@ -49,15 +50,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(PlayQueueCor());
     }
 
-    public void EndGame()
-    {
-        playEndEvent?.Invoke();
-    }
-
-    public void ReSetGame()
+    public void ResetGame()
     {
         resetEvent?.Invoke();
         QueueObject.resetDele.Invoke();
+        isGameClear = false;
 
         for (int i = 0; i < chests.Length; i++) chests[i].SetActive(true);
     }
@@ -82,7 +79,16 @@ public class GameManager : MonoBehaviour
 
         yield return waitForSeconds;
 
-        EndGame();
+        if (isGameClear)
+        {
+            // 클리어시 결과 화면 활성화
+            // 스테이지 초기화는 하지 않는다.
+        }
+        else
+        {
+            // 클리어 실패 시 자동으로 스테이지 초기화
+            ResetGame();
+        }
     }
 
     private bool CheckPriestsAllDie()
@@ -99,6 +105,6 @@ public class GameManager : MonoBehaviour
             if (chests[i].activeSelf)
                 return false;
 
-        return true;
+        return isGameClear = true;
     }
 }
