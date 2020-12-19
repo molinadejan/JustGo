@@ -19,6 +19,8 @@ public class UIManager : MonoBehaviour
 
     private Priest curSelectPriest = null;
 
+    [SerializeField] private GameObject highlight;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -79,6 +81,10 @@ public class UIManager : MonoBehaviour
             curSelectPriest = priest;
             SetArrowList(priest.DirList);
             arrowUI.SetActive(true);
+
+            highlight.SetActive(true);
+            highlight.transform.position = priest.transform.position;
+            highlight.transform.SetParent(priest.transform);
         }
     }
 
@@ -86,5 +92,6 @@ public class UIManager : MonoBehaviour
     {
         curSelectPriest = null;
         arrowUI.SetActive(false);
+        highlight.SetActive(false);
     }
 }

@@ -127,7 +127,10 @@ public class Priest : QueueObject
         return ret;
     }
 
-    private void OnMouseUp() => UIManager.Instance.ArrowUIEnable(this);
+    private void OnMouseUp()
+    {
+        UIManager.Instance.ArrowUIEnable(this);
+    }
 
     private void SetDie()
     {
