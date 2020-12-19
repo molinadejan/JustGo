@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class PeakManager : MonoBehaviour
+public class TilemapManager : MonoBehaviour
 {
     #region Singleton
-    private static PeakManager instance = null;
-    public static PeakManager Instance => instance;
+    private static TilemapManager instance = null;
+    public static TilemapManager Instance => instance;
     #endregion
 
     [SerializeField] private Tilemap peaks;
+    [SerializeField] private Tilemap walls;
     
     private void Awake()
     {
@@ -21,5 +22,13 @@ public class PeakManager : MonoBehaviour
         cellPos.z = 0;
 
         return peaks.HasTile(cellPos);
+    }
+
+    public bool IsOnWall(Vector3 pos, Vector3 dir)
+    {
+        Vector3Int cellPos = walls.WorldToCell(pos + dir);
+        cellPos.z = 0;
+
+        return walls.HasTile(cellPos);
     }
 }

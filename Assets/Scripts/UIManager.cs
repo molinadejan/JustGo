@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour
     {
         int index = arrows.IndexOf(arrow);
 
-        curSelectPriest.DirList.RemoveAt(index);
+        curSelectPriest.RemoveAtDirList(index);
         SetArrowList(curSelectPriest.DirList);
     }
 

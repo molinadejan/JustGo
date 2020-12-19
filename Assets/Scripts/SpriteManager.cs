@@ -20,9 +20,7 @@ public class SpriteManager : MonoBehaviour
             Sprite[] sprites = Resources.LoadAll<Sprite>("Sprites");
 
             for (int i = 0; i < sprites.Length; i++)
-            {
                 spriteDic.Add(sprites[i].name, sprites[i]);
-            }
         }
     }
 
