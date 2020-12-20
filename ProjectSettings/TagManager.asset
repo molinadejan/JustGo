@@ -4,8 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Priest
   - GoldChest
+  - ArrowUI
+  - MovingObject
   layers:
   - Default
   - TransparentFX

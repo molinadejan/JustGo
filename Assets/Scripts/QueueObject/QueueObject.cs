@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 public abstract class QueueObject : MonoBehaviour
 {
@@ -26,9 +25,11 @@ public abstract class QueueObject : MonoBehaviour
         resetDele += ResetFunc;
     }
 
-    protected abstract void OnMouseUp();
+    protected virtual void OnMouseUp()
+    {
+        HighlightUI.Instance.HightlightUIEnable(this);
+    }
 
-    // Queue에서 실행될 함수
     public abstract IEnumerator PlayOneTurnAction();
     public abstract void ResetFunc();
 }
