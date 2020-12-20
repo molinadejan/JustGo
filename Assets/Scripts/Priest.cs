@@ -31,18 +31,9 @@ public class Priest : QueueObject
         dirList.RemoveAt(index);
         isOver = dirList.Count == 0 ? true : false;
     }
+    private int listIndex;
 
     #endregion
-
-    private Vector3 startPos;
-    private int listIndex = 0;
-    private bool checkMove;
-
-    private Animator animator;
-    private BoxCollider2D col;
-
-    private WaitForSeconds waitForSeconds;
-    private WaitUntil waitUntil;
 
     private MoveDele moveDele;
     private CheckPeakDele checkPeakDele;
@@ -50,16 +41,21 @@ public class Priest : QueueObject
     private bool isDead;
     public bool IsDead => isDead;
 
-    private void Awake()
-    {
-        startPos = transform.position;
-        animator = GetComponent<Animator>();
-        col = GetComponent<BoxCollider2D>();
+    private bool checkMove;
+    private WaitForSeconds waitForSeconds;
+    private WaitUntil waitUntil;
 
-        waitForSeconds = new WaitForSeconds(0.25f);
-        waitUntil = new WaitUntil(() => checkMove);
+    private Vector3 startPos;
+
+    protected override void Awake()
+    {
+        base.Awake();
 
         isOver = true;
+
+        startPos = transform.position;
+        waitForSeconds = new WaitForSeconds(0.25f);
+        waitUntil = new WaitUntil(() => checkMove);
     }
 
     // 이동 코루틴
@@ -80,9 +76,6 @@ public class Priest : QueueObject
 
         yield return waitUntil;
         yield return waitForSeconds;
-
-        TilemapManager.Instance.IsOnChest(transform.position);
-
         yield return null;
     }
 
@@ -99,6 +92,10 @@ public class Priest : QueueObject
             isOver = true;
             isDead = true;
             animator.Play("Die");
+        }
+        else
+        {
+            TilemapManager.Instance.IsOnChest(transform.position);
         }
 
         yield return null;
@@ -138,11 +135,6 @@ public class Priest : QueueObject
         if (listIndex >= dirList.Count) isOver = true;
 
         return ret;
-    }
-
-    private void OnMouseUp()
-    {
-        UIManager.Instance.ArrowUIEnable(this);
     }
 
     public override void ResetFunc()

@@ -11,12 +11,22 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] private List<QueueObject> qObjects;
+    [SerializeField] private int maxCommand; // for get star
+
     private List<Priest> priests = new List<Priest>();
     private GameObject[] chests;
 
-    public UnityEvent playEvent;
-    public UnityEvent successEvent;
-    public UnityEvent resetEvent;
+    [SerializeField] private UnityEvent playEvent;
+    public void InvokePlayEvent() => playEvent.Invoke();
+
+
+    [SerializeField] private UnityEvent clearEvent;
+    public void InvokeClearEvent() => clearEvent.Invoke();
+
+
+    [SerializeField] private UnityEvent retryEvent;
+    public void InvokeRetryEvent() => retryEvent.Invoke();
+
 
     private WaitForSeconds waitForSeconds;
 
@@ -38,7 +48,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartCor());
     }
 
-    private IEnumerator StartCor()
+    public IEnumerator StartCor()
     {
         yield return null;
         chests = GameObject.FindGameObjectsWithTag("GoldChest");
@@ -48,15 +58,6 @@ public class GameManager : MonoBehaviour
     {
         playEvent?.Invoke();
         StartCoroutine(PlayQueueCor());
-    }
-
-    public void ResetGame()
-    {
-        resetEvent?.Invoke();
-        QueueObject.resetDele.Invoke();
-        isGameClear = false;
-
-        for (int i = 0; i < chests.Length; i++) chests[i].SetActive(true);
     }
 
     private IEnumerator PlayQueueCor()
@@ -71,24 +72,37 @@ public class GameManager : MonoBehaviour
                 {
                     yield return StartCoroutine(qObjects[i].PlayOneTurnAction());
 
-                    if (CheckGetAllChests())
-                        break;
+                    if (CheckGetAllChests()) break;
                 }
             }
         }
 
         yield return waitForSeconds;
 
-        if (isGameClear)
+        if (isGameClear) clearEvent?.Invoke();
+        else             retryEvent?.Invoke();
+    }
+
+    public void RetryStage()
+    {
+        QueueObject.InvokeResetDele();
+        isGameClear = false;
+
+        for (int i = 0; i < chests.Length; i++) chests[i].SetActive(true);
+    }
+
+    public void CheckClearStar()
+    {
+        int totalCommand = 0;
+        bool allSurvive = true;
+
+        foreach (Priest priest in priests)
         {
-            // 클리어시 결과 화면 활성화
-            // 스테이지 초기화는 하지 않는다.
+            totalCommand += priest.DirList.Count;
+            allSurvive |= !priest.IsDead;
         }
-        else
-        {
-            // 클리어 실패 시 자동으로 스테이지 초기화
-            ResetGame();
-        }
+
+        UIManager.Instance.GameClear(totalCommand <= maxCommand, allSurvive);
     }
 
     private bool CheckPriestsAllDie()

@@ -21,6 +21,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject highlight;
 
+    [SerializeField] private ResultUI resultUI;
+
+    public void GameClear(bool commands, bool survive)
+    {
+        resultUI.ShowResult(commands, survive);
+    }
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -81,18 +88,20 @@ public class UIManager : MonoBehaviour
             curSelectPriest = priest;
             SetArrowList(priest.DirList);
             arrowUI.SetActive(true);
-
-            highlight.SetActive(true);
-            highlight.transform.position = priest.transform.position;
-            highlight.transform.SetParent(priest.transform);
         }
+    }
+
+    public void SetHightlight(QueueObject obj)
+    {
+        highlight.SetActive(true);
+        highlight.transform.position = obj.transform.position;
+        highlight.transform.SetParent(obj.transform);
     }
 
     public void ArrowUIDisable()
     {
         curSelectPriest = null;
         arrowUI.SetActive(false);
-
         highlight.SetActive(false);
     }
 }
