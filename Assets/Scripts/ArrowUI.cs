@@ -5,11 +5,24 @@ using UnityEngine.UI;
 
 public class ArrowUI : MonoBehaviour
 {
+    #region Singleton
+    private static ArrowUI instance = null;
+    public static ArrowUI Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<ArrowUI>();
+
+            return instance;
+        }
+    }
+    #endregion
+
     // ArrowList의 Arrow 이미지
     // 활성화/비활성화로 조정
     // 최대 20개까지 설정 가능
     [SerializeField] private List<Arrow> arrows;
-    [SerializeField] private GameObject arrowUI;
     [SerializeField] private Scrollbar arrowScrollbar;
 
     private Priest curSelectPriest = null;
@@ -68,13 +81,12 @@ public class ArrowUI : MonoBehaviour
         {
             curSelectPriest = priest;
             SetArrowList(priest.DirList);
-            arrowUI.SetActive(true);
+            gameObject.SetActive(true);
         }
     }
 
-    public void ArrowUIDisable()
+    private void OnDisable()
     {
         curSelectPriest = null;
-        arrowUI.SetActive(false);
     }
 }

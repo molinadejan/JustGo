@@ -12,9 +12,6 @@ public abstract class QueueObject : MonoBehaviour
     protected bool isOver;
     public bool IsOver => isOver;
 
-    [SerializeField] private UnityEvent clickedEvent;
-    public void InvokeClickedEvent() => clickedEvent.Invoke();
-
     protected Animator animator;
     protected BoxCollider2D col;
 
@@ -29,10 +26,7 @@ public abstract class QueueObject : MonoBehaviour
         resetDele += ResetFunc;
     }
 
-    private void OnMouseUp()
-    {
-        clickedEvent.Invoke();
-    }
+    protected abstract void OnMouseUp();
 
     // Queue에서 실행될 함수
     public abstract IEnumerator PlayOneTurnAction();

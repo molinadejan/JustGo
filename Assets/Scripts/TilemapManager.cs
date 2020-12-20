@@ -5,17 +5,21 @@ public class TilemapManager : MonoBehaviour
 {
     #region Singleton
     private static TilemapManager instance = null;
-    public static TilemapManager Instance => instance;
+    public static TilemapManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<TilemapManager>();
+
+            return instance;
+        }
+    }
     #endregion
 
     [SerializeField] private Tilemap peaks;
     [SerializeField] private Tilemap walls;
     [SerializeField] private Tilemap chests;
-    
-    private void Awake()
-    {
-        if (instance == null) instance = this;
-    }
 
     public bool IsOnPeak(Vector3 pos)
     {

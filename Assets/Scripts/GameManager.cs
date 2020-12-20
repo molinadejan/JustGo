@@ -7,27 +7,27 @@ public class GameManager : MonoBehaviour
 {
     #region Singleton
     private static GameManager instance = null;
-    public static GameManager Instance => instance;
+    public static GameManager Instance
+    {
+        get
+        {
+            if (instance == null)
+                instance = FindObjectOfType<GameManager>();
+
+            return instance;
+        }
+    }
     #endregion
 
     [SerializeField] private List<QueueObject> qObjects;
-    [SerializeField] private int maxCommand; // for get star
+    [SerializeField] private int maxCommand;
 
     private List<Priest> priests = new List<Priest>();
     private GameObject[] chests;
 
-
     [SerializeField] private UnityEvent playEvent;
-    public void InvokePlayEvent() => playEvent.Invoke();
-
-
     [SerializeField] private UnityEvent clearEvent;
-    public void InvokeClearEvent() => clearEvent.Invoke();
-
-
     [SerializeField] private UnityEvent retryEvent;
-    public void InvokeRetryEvent() => retryEvent.Invoke();
-
 
     private WaitForSeconds waitForSeconds;
 
@@ -35,12 +35,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            priests.AddRange(FindObjectsOfType<Priest>());
-            waitForSeconds = new WaitForSeconds(0.5f);
-        }
+        priests.AddRange(FindObjectsOfType<Priest>());
+        waitForSeconds = new WaitForSeconds(0.5f);
     }
 
     private void Start()
@@ -80,12 +76,20 @@ public class GameManager : MonoBehaviour
 
         yield return waitForSeconds;
 
-        if (isGameClear) clearEvent?.Invoke();
-        else             retryEvent?.Invoke();
+        if (isGameClear) ClearStage();
+        else             RetryStage();
+    }
+
+    public void ClearStage()
+    {
+        clearEvent?.Invoke();
+        CheckClearStar();
     }
 
     public void RetryStage()
     {
+        retryEvent?.Invoke();
+
         QueueObject.InvokeResetDele();
         isGameClear = false;
 
@@ -103,7 +107,7 @@ public class GameManager : MonoBehaviour
             allSurvive |= !priest.IsDead;
         }
 
-        UIManager.Instance.GameClear(totalCommand <= maxCommand, allSurvive);
+        ResultUI.Instance.ShowResult(totalCommand <= maxCommand, allSurvive);
     }
 
     private bool CheckPriestsAllDie()
