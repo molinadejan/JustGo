@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private List<Priest> priests = new List<Priest>();
     private GameObject[] chests;
 
+
     [SerializeField] private UnityEvent playEvent;
     public void InvokePlayEvent() => playEvent.Invoke();
 

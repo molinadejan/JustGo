@@ -19,9 +19,4 @@ public class Arrow : MonoBehaviour
     }
 
     public void SetText(string text) => countText.text = text;
-
-    public void ArrowButton()
-    {
-        UIManager.Instance.MinusArrow(this);
-    }
 }
