@@ -168,6 +168,6 @@ public class Priest : QueueObject
     protected override void OnMouseUp()
     {
         ArrowUI.Instance.ArrowUIEnable(this);
-        HighlightUI.Instance.SetHightlight(this);
+        HighlightUI.Instance.HightlightUIEnable(this);
     }
 }

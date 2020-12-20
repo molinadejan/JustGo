@@ -23,9 +23,20 @@ public class ArrowUI : MonoBehaviour
     // 활성화/비활성화로 조정
     // 최대 20개까지 설정 가능
     [SerializeField] private List<Arrow> arrows;
+    [SerializeField] private GameObject arrowUI;
     [SerializeField] private Scrollbar arrowScrollbar;
 
     private Priest curSelectPriest = null;
+
+    private void Start()
+    {
+        for(int i = 0; i < arrows.Count; i++)
+        {
+            Button btn = arrows[i].GetComponent<Button>();
+            Arrow arrow = arrows[i];
+            btn.onClick.AddListener(() => MinusArrow(arrow));
+        }
+    }
 
     private void SetArrowList(List<Vector3> list)
     {
@@ -81,12 +92,13 @@ public class ArrowUI : MonoBehaviour
         {
             curSelectPriest = priest;
             SetArrowList(priest.DirList);
-            gameObject.SetActive(true);
+            arrowUI.SetActive(true);
         }
     }
 
-    private void OnDisable()
+    public void ArrowUIDisable()
     {
         curSelectPriest = null;
+        arrowUI.SetActive(false);
     }
 }

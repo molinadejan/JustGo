@@ -17,16 +17,19 @@ public class HighlightUI : MonoBehaviour
     }
     #endregion
 
-    public void SetHightlight(QueueObject obj)
+    [SerializeField] private GameObject highlight;
+
+    public void HightlightUIEnable(QueueObject obj)
     {
-        gameObject.SetActive(true);
-        transform.position = obj.transform.position;
-        transform.SetParent(obj.transform);
+        highlight.SetActive(true);
+        highlight.transform.position = obj.transform.position;
+        highlight.transform.SetParent(obj.transform);
     }
 
-    private void OnDisable()
+    public void HighlightUIDisable()
     {
-        transform.position = Vector3.zero;
-        transform.SetParent(null);
+        highlight.SetActive(false);
+        highlight.transform.position = Vector3.zero;
+        highlight.transform.SetParent(null);
     }
 }

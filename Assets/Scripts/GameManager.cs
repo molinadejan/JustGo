@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
     {
         clearEvent?.Invoke();
         CheckClearStar();
+        HighlightUI.Instance.HighlightUIDisable();
+        ArrowUI.Instance.ArrowUIDisable();
     }
 
     public void RetryStage()
@@ -94,6 +96,8 @@ public class GameManager : MonoBehaviour
         isGameClear = false;
 
         for (int i = 0; i < chests.Length; i++) chests[i].SetActive(true);
+
+        ResultUI.Instance.ResultUIDisable();
     }
 
     public void CheckClearStar()
@@ -107,7 +111,7 @@ public class GameManager : MonoBehaviour
             allSurvive |= !priest.IsDead;
         }
 
-        ResultUI.Instance.ShowResult(totalCommand <= maxCommand, allSurvive);
+        ResultUI.Instance.ResultUIEnable(totalCommand <= maxCommand, allSurvive);
     }
 
     private bool CheckPriestsAllDie()
