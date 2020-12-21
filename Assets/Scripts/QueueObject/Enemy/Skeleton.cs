@@ -1,17 +1,14 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public partial class Priest : MovingObject
+public partial class Skeleton : MovingObject
 {
-    // 클리어 조건을 확인하기 위한 isDead 변수입니다.
-    // Priest의 Survive 여부를 판단합니다.
-    private bool isDead;
-    public bool IsDead => isDead;
-
     protected override void Awake()
     {
         base.Awake();
-        isOver = true;
+
+        for (int i = 0; i < directionList.Count; i++)
+            AddDirList(directionList[i].ToString());
     }
 
     public override IEnumerator CheckPeakCor()
@@ -20,13 +17,7 @@ public partial class Priest : MovingObject
         if (TilemapManager.Instance.IsOnPeak(transform.position))
         {
             isOver = true;
-            isDead = true;
             animator.Play("Die");
-        }
-        // GoldChest가 현재 Position cellPos에 있는지 확인
-        else
-        {
-            TilemapManager.Instance.IsOnChest(transform.position);
         }
 
         yield return null;
@@ -35,9 +26,7 @@ public partial class Priest : MovingObject
     public override void ResetFunc()
     {
         base.ResetFunc();
-
-        isOver = dirList.Count == 0 ? true : false;
-        isDead = false;
+        isOver = false;
         animator.Play("Idle");
         listIndex = 0;
     }

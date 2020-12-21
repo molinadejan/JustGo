@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         chests = GameObject.FindGameObjectsWithTag("GoldChest");
     }
 
+    // 스테이지 플레이
     public void PlayQueue()
     {
         playEvent?.Invoke();
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
         else             RetryStage();
     }
 
+    // 스테이지 클리어 동작
     public void ClearStage()
     {
         clearEvent?.Invoke();
@@ -88,6 +90,7 @@ public class GameManager : MonoBehaviour
         ArrowUI.Instance.ArrowUIDisable();
     }
 
+    // 스테이지 재시작 동작
     public void RetryStage()
     {
         retryEvent?.Invoke();
@@ -100,6 +103,8 @@ public class GameManager : MonoBehaviour
         ResultUI.Instance.ResultUIDisable();
     }
 
+    // 클리어 별의 조건을 확인합니다.
+    // 총 커맨드 수, Priest 전원 생존
     public void CheckClearStar()
     {
         int totalCommand = 0;
@@ -108,12 +113,17 @@ public class GameManager : MonoBehaviour
         foreach (Priest priest in priests)
         {
             totalCommand += priest.DirList.Count;
-            allSurvive |= !priest.IsDead;
+            allSurvive &= !priest.IsDead;
+
+            Debug.Log(priest.transform.name + " is " + (priest.IsDead ? "Dead" : "Survive"));
         }
+
+        Debug.Log("Total " + totalCommand + " Commands");
 
         ResultUI.Instance.ResultUIEnable(totalCommand <= maxCommand, allSurvive);
     }
 
+    //Priest들이 모두 죽었는지 확인합니다.
     private bool CheckPriestsAllDie()
     {
         for (int i = 0; i < priests.Count; i++)
@@ -122,6 +132,7 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    //모든 GoldChest를 얻었는지 확인합니다.
     private bool CheckGetAllChests()
     {
         for (int i = 0; i < chests.Length; i++)

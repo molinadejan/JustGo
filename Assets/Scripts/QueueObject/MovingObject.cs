@@ -5,8 +5,12 @@ using UnityEngine;
 public delegate void MoveDele(Vector3 dir, bool check);
 public delegate void CheckPeakDele();
 
+/// <summary>
+/// Queue Play시 이동하는 오브젝트 들의 최상위 클래스 입니다.
+/// </summary>
 public abstract class MovingObject : QueueObject
 {
+    // 이동과 가시위에 있는지 체크하는 델리게이트 입니다.
     protected MoveDele moveDele;
     protected CheckPeakDele checkPeakDele;
 
@@ -28,6 +32,7 @@ public abstract class MovingObject : QueueObject
         waitUntil = new WaitUntil(() => checkMove);
     }
 
+    // 기본 이동 코루틴, 함수
     public IEnumerator MoveCor(Vector3 dir, bool check)
     {
         checkMove = false;
@@ -53,6 +58,7 @@ public abstract class MovingObject : QueueObject
         StartCoroutine(MoveCor(dir, check));
     }
 
+    // 가시 체크 코루틴, 함수
     public abstract IEnumerator CheckPeakCor();
 
     public void CheckPeak()
@@ -60,6 +66,9 @@ public abstract class MovingObject : QueueObject
         StartCoroutine(CheckPeakCor());
     }
 
+    // 이동시 앞에 물체 확인
+    // 이동 가능한 물체가 있을 경우 MovingObjcet의 moveDele에 Move 함수 추가
+    // 이동 가능한 물체가 있을 경우 MovingObject의 checkPeakDele에 CheckPeak 함수 추가
     public bool CheckNext(Vector3 dir, ref MoveDele moveDele, ref CheckPeakDele checkPeakDele)
     {
         col.enabled = false;
@@ -82,6 +91,7 @@ public abstract class MovingObject : QueueObject
         return true;
     }
 
+    // 초기화 시 원래 위치로 일단 이동
     public override void ResetFunc()
     {
         transform.position = startPos;

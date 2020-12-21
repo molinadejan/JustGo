@@ -14,7 +14,16 @@ public partial class ArrowUI
             curSelectPriest = priest;
             SetArrowList(priest.DirList);
             arrowUI.SetActive(true);
+            arrowUIInput.SetActive(true);
         }
+    }
+
+    public void ArrowUIEnable(Skeleton skeleton)
+    {
+        curSelectPriest = null;
+        SetArrowList(skeleton.DirList);
+        arrowUI.SetActive(true);
+        arrowUIInput.SetActive(false);
     }
 
     /// <summary>

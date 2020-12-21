@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ResultUI : MonoBehaviour
+public class ResultUI : MonoBehaviour 
 {
     #region Singleton
     private static ResultUI instance = null;

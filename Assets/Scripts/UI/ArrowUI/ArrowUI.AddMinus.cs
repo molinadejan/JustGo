@@ -30,6 +30,8 @@ public partial class ArrowUI
     /// <param name="arrow">비활성화할 Arrow</param>
     public void MinusArrow(Arrow arrow)
     {
+        if (curSelectPriest == null) return;
+
         int index = arrows.IndexOf(arrow);
 
         curSelectPriest.RemoveAtDirList(index);

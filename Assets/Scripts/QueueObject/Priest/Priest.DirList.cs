@@ -20,6 +20,7 @@ public partial class Priest
         else if (dir.Equals("right")) dirList.Add(Vector3.right);
         else return;
 
+        // DirList가 비어있지 않다면 isOver를 false로 합니다.
         isOver = false;
     }
 
@@ -27,6 +28,7 @@ public partial class Priest
     {
         dirList.RemoveAt(index);
         isOver = dirList.Count == 0 ? true : false;
+        //DirList가 비어있다면 isOver를 true로 합니다.
     }
 
     /// <summary>
@@ -37,6 +39,7 @@ public partial class Priest
     {
         Vector3 ret = dirList[listIndex++];
 
+        // DirList를 모두 이동했으면 isOver를 true로 합니다.
         if (listIndex >= dirList.Count) isOver = true;
 
         return ret;

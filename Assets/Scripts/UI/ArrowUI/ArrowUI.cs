@@ -20,6 +20,7 @@ public partial class ArrowUI : MonoBehaviour
 
     [SerializeField] private List<Arrow> arrows;
     [SerializeField] private GameObject arrowUI;
+    [SerializeField] private GameObject arrowUIInput;
     [SerializeField] private Scrollbar arrowScrollbar;
 
     private Priest curSelectPriest = null;
