@@ -5,9 +5,7 @@ using UnityEngine;
 public delegate void MoveDele(Vector3 dir, bool check);
 public delegate void CheckPeakDele();
 
-/// <summary>
 /// Queue Play시 이동하는 오브젝트 들의 최상위 클래스 입니다.
-/// </summary>
 public abstract partial class MovingObject : QueueObject
 {
     // 이동과 가시위에 있는지 체크하는 델리게이트 입니다.

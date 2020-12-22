@@ -1,9 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-/// <summary>
-/// QueuePlay시 동작할 오브젝트들의 최상위 클래스 입니다.
-/// </summary>
+// QueuePlay시 동작할 오브젝트들의 최상위 클래스 입니다.
 public abstract class QueueObject : MonoBehaviour
 {
     public delegate void ResetDele();

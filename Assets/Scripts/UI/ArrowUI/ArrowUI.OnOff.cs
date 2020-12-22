@@ -1,12 +1,7 @@
-﻿
-// ArrowUI의 Arrow 추가, 제거를 담당하는 ArrowUI partial class
-
+﻿// ArrowUI의 Arrow 추가, 제거를 담당하는 ArrowUI partial class
 public partial class ArrowUI
 {
-    /// <summary>
-    /// ArrowUI를 활성화 합니다. 파라미터로 넘어온 Priest의 DirList를 보여줍니다.
-    /// </summary>
-    /// <param name="priest">ArrowUI에 표시할 Preist</param>
+    // ArrowUI를 활성화 합니다. 파라미터로 넘어온 Priest의 DirList를 보여줍니다.
     public void ArrowUIEnable(Priest priest)
     {
         if (curSelectPriest != priest)
@@ -26,9 +21,7 @@ public partial class ArrowUI
         arrowUIInput.SetActive(false);
     }
 
-    /// <summary>
-    /// ArrowUI를 비활성화 합니다.
-    /// </summary>
+    // ArrowUI를 비활성화 합니다.
     public void ArrowUIDisable()
     {
         curSelectPriest = null;
