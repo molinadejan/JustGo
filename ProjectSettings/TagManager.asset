@@ -7,6 +7,8 @@ TagManager:
   - GoldChest
   - ArrowUI
   - MovingObject
+  - Priest
+  - MovingObjectCantPush
   layers:
   - Default
   - TransparentFX

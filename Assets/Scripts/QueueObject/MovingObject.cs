@@ -8,11 +8,11 @@ public delegate void CheckPeakDele();
 /// <summary>
 /// Queue Play시 이동하는 오브젝트 들의 최상위 클래스 입니다.
 /// </summary>
-public abstract class MovingObject : QueueObject
+public abstract partial class MovingObject : QueueObject
 {
     // 이동과 가시위에 있는지 체크하는 델리게이트 입니다.
-    protected MoveDele moveDele;
-    protected CheckPeakDele checkPeakDele;
+    private MoveDele moveDele;
+    private CheckPeakDele checkPeakDele;
 
     [SerializeField] private float moveAmount;
     [SerializeField] private float moveTime;
@@ -83,6 +83,10 @@ public abstract class MovingObject : QueueObject
 
             return nextMovingObject.CheckNext(dir, ref moveDele, ref checkPeakDele);
         }
+        else if(hit && hit.transform.CompareTag("MovingObjectCantPush"))
+        {
+            return false;
+        }
         else if (TilemapManager.Instance.IsOnWall(transform.position, dir * moveAmount))
         {
             return false;
@@ -91,9 +95,30 @@ public abstract class MovingObject : QueueObject
         return true;
     }
 
+    public override IEnumerator PlayOneTurnAction()
+    {
+        Vector3 nextDir = GetNextDir();
+
+        bool check = CheckNext(nextDir, ref moveDele, ref checkPeakDele);
+
+        moveDele?.Invoke(nextDir, check);
+        yield return StartCoroutine(MoveCor(nextDir, check));
+
+        checkPeakDele?.Invoke();
+        yield return StartCoroutine(CheckPeakCor());
+
+        moveDele = null;
+        checkPeakDele = null;
+
+        yield return null;
+    }
+
     // 초기화 시 원래 위치로 일단 이동
     public override void ResetFunc()
     {
         transform.position = startPos;
+        animator.Play("Idle");
+        listIndex = 0;
+        isOver = dirList.Count == 0 ? true : false;
     }
 }

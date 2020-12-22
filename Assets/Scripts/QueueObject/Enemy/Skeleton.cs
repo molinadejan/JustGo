@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-public partial class Skeleton : Enemy
+public class Skeleton : Enemy
 {
     public override IEnumerator CheckPeakCor()
     {

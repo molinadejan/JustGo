@@ -25,30 +25,18 @@ public abstract class QueueObject : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
     }
 
-    /// <summary>
-    /// 시작할때 resetDele에 ResetFunc()를 추가합니다.
-    /// </summary>
     public virtual void Start()
     {
         resetDele += ResetFunc;
     }
 
-    /// <summary>
-    /// 마우스 클릭 시 동작 정의
-    /// </summary>
     protected virtual void OnMouseUp()
     {
         HighlightUI.Instance.HightlightUIEnable(this);
     }
 
-    /// <summary>
-    /// Queue Play시 실행될 QueueObject의 동작
-    /// </summary>
-    /// <returns></returns>
+    //Queue Play시 실행될 QueueObject의 동작
     public abstract IEnumerator PlayOneTurnAction();
 
-    /// <summary>
-    /// 초기상태로 변경
-    /// </summary>
     public abstract void ResetFunc();
 }
