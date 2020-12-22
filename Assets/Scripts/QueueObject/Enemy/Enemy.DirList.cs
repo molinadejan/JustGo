@@ -9,7 +9,7 @@ public enum Direction
     right
 }
 
-public partial class Skeleton
+public partial class Enemy
 {
     [SerializeField] private List<Direction> directionList;
 

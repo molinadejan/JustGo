@@ -18,7 +18,7 @@ public partial class ArrowUI
         }
     }
 
-    public void ArrowUIEnable(Skeleton skeleton)
+    public void ArrowUIEnable(Enemy skeleton)
     {
         curSelectPriest = null;
         SetArrowList(skeleton.DirList);
