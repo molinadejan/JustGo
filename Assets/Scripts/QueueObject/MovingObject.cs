@@ -117,8 +117,8 @@ public abstract partial class MovingObject : QueueObject
     public override void ResetFunc()
     {
         transform.position = startPos;
-        animator.Play("Idle");
         listIndex = 0;
         isOver = dirList.Count == 0 ? true : false;
+        gameObject.SetActive(true);
     }
 }

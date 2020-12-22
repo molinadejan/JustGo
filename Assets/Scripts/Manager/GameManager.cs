@@ -113,9 +113,9 @@ public class GameManager : MonoBehaviour
         foreach (Priest priest in priests)
         {
             totalCommand += priest.DirList.Count;
-            allSurvive &= !priest.IsDead;
+            allSurvive &= priest.gameObject.activeSelf;
 
-            Debug.Log(priest.transform.name + " is " + (priest.IsDead ? "Dead" : "Survive"));
+            Debug.Log(priest.transform.name + " is " + (priest.gameObject.activeSelf ? "Survive" : "Dead"));
         }
 
         Debug.Log("Total " + totalCommand + " Commands");
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
         ResultUI.Instance.ResultUIEnable(totalCommand <= maxCommand, allSurvive);
     }
 
-    //Priest들이 모두 죽었는지 확인합니다.
+    //Priest들이 남은 행동이 있는지 확인합니다.
     private bool CheckPriestsAllDie()
     {
         for (int i = 0; i < priests.Count; i++)

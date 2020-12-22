@@ -16,12 +16,10 @@ public abstract class QueueObject : MonoBehaviour
     protected bool isOver;
     public bool IsOver => isOver;
 
-    protected Animator animator;
     protected BoxCollider2D col;
 
     protected virtual void Awake()
     {
-        animator = GetComponent<Animator>();
         col = GetComponent<BoxCollider2D>();
     }
 

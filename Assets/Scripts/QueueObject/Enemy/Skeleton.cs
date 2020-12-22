@@ -8,7 +8,8 @@ public class Skeleton : Enemy
         if (TilemapManager.Instance.IsOnPeak(transform.position))
         {
             isOver = true;
-            animator.Play("Die");
+            gameObject.SetActive(false);
+            ResourceLoadManager.Instance.ShowBlood(transform);
         }
 
         yield return null;

@@ -25,8 +25,8 @@ public class ResultUI : MonoBehaviour
     {
         resultUI.SetActive(true);
 
-        starCommand.sprite = SpriteManager.Instance.GetSprite(commands ? "starOn" : "starOff");
-        starSurvive.sprite = SpriteManager.Instance.GetSprite(survive ? "starOn" : "starOff");
+        starCommand.sprite = ResourceLoadManager.Instance.GetSprite(commands ? "starOn" : "starOff");
+        starSurvive.sprite = ResourceLoadManager.Instance.GetSprite(survive ? "starOn" : "starOff");
     }
 
     public void ResultUIDisable()
