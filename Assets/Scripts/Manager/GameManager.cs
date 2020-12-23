@@ -119,10 +119,10 @@ public class GameManager : MonoBehaviour
             totalCommand += priest.DirList.Count;
             allSurvive &= priest.gameObject.activeSelf;
 
-            Debug.Log(priest.transform.name + " is " + (priest.gameObject.activeSelf ? "Survive" : "Dead"));
+            //Debug.Log(priest.transform.name + " is " + (priest.gameObject.activeSelf ? "Survive" : "Dead"));
         }
 
-        Debug.Log("Total " + totalCommand + " Commands");
+        //Debug.Log("Total " + totalCommand + " Commands");
 
         ResultUI.Instance.ResultUIEnable(totalCommand <= maxCommand, allSurvive);
     }
