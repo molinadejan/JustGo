@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 256
+      m_MaxTextureSize: 512
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 0
@@ -45,24 +45,31 @@ SpriteAtlas:
     - {fileID: 102900000, guid: 7d6fba40e6314a0408291c93d62bf498, type: 3}
     - {fileID: 102900000, guid: 1fb24750e10c32d48b61caebe586bdc3, type: 3}
     - {fileID: 102900000, guid: 62566e99f840ca1468fab4cfd38b58aa, type: 3}
+    - {fileID: 102900000, guid: d66b74effbc598b4a9763a803a2af99f, type: 3}
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
   - {fileID: 21300000, guid: 9b553930709d0dd45a98598354e792f0, type: 3}
+  - {fileID: 21300000, guid: 2c61bb50ada376c468658036d72d7708, type: 3}
   - {fileID: 21300000, guid: efd1e2d0f8186f64ca7eddceb6971d6a, type: 3}
   - {fileID: 21300000, guid: f9fe8061f951b2043ae3dff8d134d3fb, type: 3}
+  - {fileID: 21300000, guid: 604ce96189caf914eaec3ca86f32fe3d, type: 3}
+  - {fileID: 21300000, guid: 2c2c5c61479e71843be03b98247318e7, type: 3}
   - {fileID: 21300000, guid: 7e5c58918eb9949468d8fb001879bc37, type: 3}
   - {fileID: 21300000, guid: b30f79f1f82186349a80c9a5b9be99fe, type: 3}
   - {fileID: 21300000, guid: 2ed076329efe4fa49ad7d9aaa1b6d01d, type: 3}
   - {fileID: 21300000, guid: d684bf234f3a27046a33611a275a8e6b, type: 3}
   - {fileID: 21300000, guid: 01f0e093bdefda4438b0ac8a984a11f9, type: 3}
+  - {fileID: 21300000, guid: e3a068e30e84f6d4090a0575cba46d9e, type: 3}
   - {fileID: 21300000, guid: eab78b0440757b24797f24b9262cdd8c, type: 3}
   - {fileID: 21300000, guid: d012fec4571e1c54999318263b4d3e41, type: 3}
   - {fileID: 21300000, guid: 68253e556972c2543bf3a00c62ee3927, type: 3}
   - {fileID: 21300000, guid: 22a683958491e5240b8f9f3f0d6559e6, type: 3}
   - {fileID: 21300000, guid: 7ae7ab564ce0a9944bc84e056d4fdb8d, type: 3}
   - {fileID: 21300000, guid: 81d4bc563189a124880e44b003b433d8, type: 3}
+  - {fileID: 21300000, guid: 6db6c296808fbb24daf2b4a7c3122bda, type: 3}
   - {fileID: 21300000, guid: 54de54c6f1f59c3409408b3396271e84, type: 3}
+  - {fileID: 21300000, guid: 81412ce7cdb297241b6dd7722e9d68b8, type: 3}
   - {fileID: 21300000, guid: 0ac4d4a8525d4294289202f6c31fe64e, type: 3}
   - {fileID: 21300000, guid: 1a85f9a86184d2b4da452a39e7c3929e, type: 3}
   - {fileID: 21300000, guid: 54c6cc0975195ac4a939537c893031e7, type: 3}
@@ -75,6 +82,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 28907e7c4ab6da647b72d2451968b548, type: 3}
   - {fileID: 21300000, guid: fdea3a8c99a973244900b70723b8e484, type: 3}
   - {fileID: 21300000, guid: 06d0fffc494ffd343814d279cb356706, type: 3}
+  - {fileID: 21300000, guid: 001f3bfd5741a8b47b88b542b51da4a9, type: 3}
   - {fileID: 21300000, guid: 22725d2e6c889cd4a8a7d3d1d85c11b9, type: 3}
   - {fileID: 21300000, guid: 14f6506e0ab980a4b88619c93e0f2f1e, type: 3}
   - {fileID: 21300000, guid: c052016ef563b5d43b372feae67cef0b, type: 3}
@@ -83,20 +91,26 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 04dcf7ff56a15174c9f562e0098fca94, type: 3}
   m_PackedSpriteNamesToIndex:
   - 5
+  - ArrowUIExit
   - 16
   - 7
+  - down
+  - ArrowUIBox
   - 26
   - 29
   - 4
   - 8
   - 23
+  - up
   - 11
   - 24
   - 13
   - 9
   - 20
   - 30
+  - Highlight
   - 1
+  - right
   - 3
   - 18
   - 28
@@ -109,6 +123,7 @@ SpriteAtlas:
   - 19
   - 17
   - 2
+  - left
   - 15
   - 14
   - 22
