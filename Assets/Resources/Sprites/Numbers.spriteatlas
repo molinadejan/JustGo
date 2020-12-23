@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Numbers
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 0
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 0
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: DefaultTexturePlatform
+      m_MaxTextureSize: 256
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: -1
+      m_TextureCompression: 0
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 0
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 7d6fba40e6314a0408291c93d62bf498, type: 3}
+    - {fileID: 102900000, guid: 1fb24750e10c32d48b61caebe586bdc3, type: 3}
+    - {fileID: 102900000, guid: 62566e99f840ca1468fab4cfd38b58aa, type: 3}
+    bindAsDefault: 1
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 9b553930709d0dd45a98598354e792f0, type: 3}
+  - {fileID: 21300000, guid: efd1e2d0f8186f64ca7eddceb6971d6a, type: 3}
+  - {fileID: 21300000, guid: f9fe8061f951b2043ae3dff8d134d3fb, type: 3}
+  - {fileID: 21300000, guid: 7e5c58918eb9949468d8fb001879bc37, type: 3}
+  - {fileID: 21300000, guid: b30f79f1f82186349a80c9a5b9be99fe, type: 3}
+  - {fileID: 21300000, guid: 2ed076329efe4fa49ad7d9aaa1b6d01d, type: 3}
+  - {fileID: 21300000, guid: d684bf234f3a27046a33611a275a8e6b, type: 3}
+  - {fileID: 21300000, guid: 01f0e093bdefda4438b0ac8a984a11f9, type: 3}
+  - {fileID: 21300000, guid: eab78b0440757b24797f24b9262cdd8c, type: 3}
+  - {fileID: 21300000, guid: d012fec4571e1c54999318263b4d3e41, type: 3}
+  - {fileID: 21300000, guid: 68253e556972c2543bf3a00c62ee3927, type: 3}
+  - {fileID: 21300000, guid: 22a683958491e5240b8f9f3f0d6559e6, type: 3}
+  - {fileID: 21300000, guid: 7ae7ab564ce0a9944bc84e056d4fdb8d, type: 3}
+  - {fileID: 21300000, guid: 81d4bc563189a124880e44b003b433d8, type: 3}
+  - {fileID: 21300000, guid: 54de54c6f1f59c3409408b3396271e84, type: 3}
+  - {fileID: 21300000, guid: 0ac4d4a8525d4294289202f6c31fe64e, type: 3}
+  - {fileID: 21300000, guid: 1a85f9a86184d2b4da452a39e7c3929e, type: 3}
+  - {fileID: 21300000, guid: 54c6cc0975195ac4a939537c893031e7, type: 3}
+  - {fileID: 21300000, guid: 36dca0d9175175442b62537946749f31, type: 3}
+  - {fileID: 21300000, guid: 0161242b2bd6a38459aa38f60a54bef8, type: 3}
+  - {fileID: 21300000, guid: b911d05be7ecb2a40bc399353db033a0, type: 3}
+  - {fileID: 21300000, guid: acb64d8b426baee4fbf34e538c6e7f21, type: 3}
+  - {fileID: 21300000, guid: 2b174babfdf734c4bb1fce8df9aa94dc, type: 3}
+  - {fileID: 21300000, guid: 675cf47c9425df544bec0ffde322bd2c, type: 3}
+  - {fileID: 21300000, guid: 28907e7c4ab6da647b72d2451968b548, type: 3}
+  - {fileID: 21300000, guid: fdea3a8c99a973244900b70723b8e484, type: 3}
+  - {fileID: 21300000, guid: 06d0fffc494ffd343814d279cb356706, type: 3}
+  - {fileID: 21300000, guid: 22725d2e6c889cd4a8a7d3d1d85c11b9, type: 3}
+  - {fileID: 21300000, guid: 14f6506e0ab980a4b88619c93e0f2f1e, type: 3}
+  - {fileID: 21300000, guid: c052016ef563b5d43b372feae67cef0b, type: 3}
+  - {fileID: 21300000, guid: 015c59ae1d679c8479ba8bd0902f7587, type: 3}
+  - {fileID: 21300000, guid: a47c09ee737ddfe40a19e3896bbc9edc, type: 3}
+  - {fileID: 21300000, guid: 04dcf7ff56a15174c9f562e0098fca94, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - 5
+  - 16
+  - 7
+  - 26
+  - 29
+  - 4
+  - 8
+  - 23
+  - 11
+  - 24
+  - 13
+  - 9
+  - 20
+  - 30
+  - 1
+  - 3
+  - 18
+  - 28
+  - 27
+  - starOn
+  - 12
+  - starOff
+  - 0
+  - 6
+  - 19
+  - 17
+  - 2
+  - 15
+  - 14
+  - 22
+  - 21
+  - 10
+  - 25
+  m_Tag: Numbers
+  m_IsVariant: 0

@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Input.multiTouchEnabled = false;
+
+        for (int i = 0; i < qObjects.Count; i++)
+            qObjects[i].order.sprite = ResourceLoadManager.Instance.GetSprite((i + 1).ToString());
+
         StartCoroutine(StartCor());
     }
 
@@ -70,7 +74,7 @@ public class GameManager : MonoBehaviour
                 {
                     yield return StartCoroutine(qObjects[i].PlayOneTurnAction());
 
-                    if (CheckGetAllChests()) break;
+                    if (CheckGetAllChests() || CheckPriestsAllDie()) break;
                 }
             }
         }

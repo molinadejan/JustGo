@@ -12,16 +12,14 @@ public partial class ResourceLoadManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(this);
+
+            LoadSprites();
+            LoadPrefabs();
         }
         else
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
-        LoadSprites();
-        LoadPrefabs();
     }
 }
