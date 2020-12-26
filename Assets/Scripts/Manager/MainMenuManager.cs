@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] private UnityEvent loginFail;
     public void LoginFail() => loginFail?.Invoke();
+
+    [SerializeField] private UnityEvent loadSuccess;
+    public void LoadSuccess() => loadSuccess?.Invoke();
+
+    [SerializeField] private UnityEvent loadFail;
+    public void LoadFail() => loadFail?.Invoke();
 
     private void Awake()
     {
