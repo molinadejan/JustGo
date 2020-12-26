@@ -1,4 +1,8 @@
-﻿using GooglePlayGames;
+﻿
+#if UNITY_ANDROID
+using GooglePlayGames;
+#endif
+
 using UnityEngine;
 
 public class GoogleLoginManager : MonoBehaviour
@@ -22,14 +26,20 @@ public class GoogleLoginManager : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_EDITOR
+        MainMenuManager.Instance.LoginSuccess();
+#elif UNITY_ANDROID
         PlayGamesPlatform.DebugLogEnabled = false;
         PlayGamesPlatform.Activate();
 
         Login();
+#endif
     }
 
     public void Login()
     {
+        MainMenuManager.Instance.LoginSuccess();
+
         Social.localUser.Authenticate((bool success) =>
         {
             if (success) MainMenuManager.Instance.LoginSuccess();

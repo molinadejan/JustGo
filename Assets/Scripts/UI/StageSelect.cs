@@ -3,16 +3,20 @@ using UnityEngine.UI;
 
 public class StageSelect : MonoBehaviour
 {
-    public Image[] stars;
+    private Image[] stars;
 
-    public void SetStar(int mask)
+    private void Awake()
     {
-        for(int i = 0; i < 3; i++)
-        {
-            if ((mask & (int)Mathf.Pow(2, i)) != 0)
-                stars[i].sprite = ResourceLoadManager.Instance.GetSprite("StarOn");
-            else
-                stars[i].sprite = ResourceLoadManager.Instance.GetSprite("StarOff");
-        }
+        stars = new Image[3];
+
+        for (int i = 0; i < 3; i++)
+            stars[i] = transform.GetChild(i + 1).GetComponent<Image>();
+    }
+
+    public void SetStar(bool clear, bool command, bool survive)
+    {
+        stars[0].sprite = ResourceLoadManager.Instance.GetSprite(clear ? "starOn" : "starOff");
+        stars[1].sprite = ResourceLoadManager.Instance.GetSprite(command ? "starOn" : "starOff");
+        stars[2].sprite = ResourceLoadManager.Instance.GetSprite(survive ? "starOn" : "starOff");
     }
 }

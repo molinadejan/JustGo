@@ -16,6 +16,7 @@ public partial class ResourceLoadManager : MonoBehaviour
 
             LoadSprites();
             LoadPrefabs();
+            LoadSavedData();
         }
         else
         {
