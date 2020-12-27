@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -20,11 +20,26 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private UnityEvent loadFail;
     public void LoadFail() => loadFail?.Invoke();
 
+    [SerializeField] private List<StageSelect> stageSelects;
+
     private void Awake()
     {
         if(instance == null)
         {
             instance = this;
+        }
+    }
+
+    public void OpenStageSelect()
+    {
+        bool check = true;
+
+        for(int i = 0; i < stageSelects.Count; i++)
+        {
+            StageData data = ResourceLoadManager.Instance.StageDatas[i];
+            stageSelects[i].SetStar(check, data.isClear, data.isCommand, data.isSurvive);
+
+            check = data.isClear;
         }
     }
 }

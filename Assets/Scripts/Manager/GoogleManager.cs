@@ -124,13 +124,13 @@ public class GoogleManager : MonoBehaviour
 
         if (status == SavedGameRequestStatus.Success)
         {
-            MainMenuManager.Instance.LoadSuccess();
             ResourceLoadManager.Instance.JsonString = System.Text.Encoding.UTF8.GetString(LoadedData);
+            MainMenuManager.Instance.LoadSuccess();
         }
         else
         {
-            MainMenuManager.Instance.LoadFail();
             ResourceLoadManager.Instance.JsonString = "LoadError";
+            MainMenuManager.Instance.LoadFail();
         }
     }
 

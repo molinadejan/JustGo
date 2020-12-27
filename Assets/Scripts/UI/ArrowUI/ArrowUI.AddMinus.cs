@@ -12,7 +12,7 @@ public partial class ArrowUI
     {
         int index = curSelectPriest.DirList.Count;
 
-        if (index >= arrows.Count) return;
+        if (index >= arrows.Count || index >= curSelectPriest.commandLimit) return;
 
         arrows[index].gameObject.SetActive(true);
         arrows[index].SetSprite(dir);

@@ -10,6 +10,8 @@ public partial class ArrowUI
             SetArrowList(priest.DirList);
             arrowUI.SetActive(true);
             arrowUIInput.SetActive(true);
+            priestMaxCommand.gameObject.SetActive(true);
+            priestMaxCommand.text = "MAX " + curSelectPriest.commandLimit;
         }
     }
 
@@ -19,6 +21,7 @@ public partial class ArrowUI
         SetArrowList(skeleton.DirList);
         arrowUI.SetActive(true);
         arrowUIInput.SetActive(false);
+        priestMaxCommand.gameObject.SetActive(false);
     }
 
     // ArrowUI를 비활성화 합니다.

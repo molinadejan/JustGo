@@ -2,6 +2,8 @@
 
 public partial class Priest : MovingObject
 {
+    public int commandLimit;
+
     protected override void Awake()
     {
         base.Awake();

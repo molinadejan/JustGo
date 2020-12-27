@@ -1,10 +1,10 @@
 {
     "m_SelectedDeviceId": "5200aed5eac27531",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
-        "exited": false
+        "deviceId": "5200aed5eac27531",
+        "name": "com.molinadejan.justgo",
+        "processId": 10138,
+        "exited": true
     },
     "m_SelectedPriority": 0,
     "m_KnownPackagesForSerialization": [
@@ -17,32 +17,38 @@
         {
             "deviceId": "5200aed5eac27531",
             "name": "com.molinadejan.justgo",
-            "processId": 991,
+            "processId": 32554,
             "exited": true
         },
         {
             "deviceId": "5200aed5eac27531",
             "name": "com.molinadejan.justgo",
-            "processId": 4500,
+            "processId": 5235,
             "exited": true
         },
         {
             "deviceId": "5200aed5eac27531",
             "name": "com.molinadejan.justgo",
-            "processId": 5989,
+            "processId": 7062,
             "exited": true
         },
         {
             "deviceId": "5200aed5eac27531",
             "name": "com.molinadejan.justgo",
-            "processId": 6786,
+            "processId": 7707,
             "exited": true
         },
         {
             "deviceId": "5200aed5eac27531",
             "name": "com.molinadejan.justgo",
-            "processId": 7384,
-            "exited": false
+            "processId": 9652,
+            "exited": true
+        },
+        {
+            "deviceId": "5200aed5eac27531",
+            "name": "com.molinadejan.justgo",
+            "processId": 10138,
+            "exited": true
         }
     ],
     "m_Tags": {

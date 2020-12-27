@@ -22,6 +22,7 @@ public partial class ArrowUI : MonoBehaviour
     [SerializeField] private GameObject arrowUI;
     [SerializeField] private GameObject arrowUIInput;
     [SerializeField] private Scrollbar arrowScrollbar;
+    [SerializeField] private Text priestMaxCommand;
 
     private Priest curSelectPriest = null;
 

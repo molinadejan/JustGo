@@ -112,19 +112,16 @@ public class GameManager : MonoBehaviour
     public void CheckClearStar()
     {
         int totalCommand = 0;
-        bool allSurvive = true;
+        int totalDeath = 0;
 
         foreach (Priest priest in priests)
         {
             totalCommand += priest.DirList.Count;
-            allSurvive &= priest.gameObject.activeSelf;
 
-            //Debug.Log(priest.transform.name + " is " + (priest.gameObject.activeSelf ? "Survive" : "Dead"));
+            if (!priest.gameObject.activeSelf) ++totalDeath;
         }
 
-        //Debug.Log("Total " + totalCommand + " Commands");
-
-        ResultUI.Instance.ResultUIEnable(totalCommand <= maxCommand, allSurvive);
+        ResultUI.Instance.ResultUIEnable(totalCommand, totalCommand <= maxCommand, totalDeath);
     }
 
     //Priest들이 남은 행동이 있는지 확인합니다.

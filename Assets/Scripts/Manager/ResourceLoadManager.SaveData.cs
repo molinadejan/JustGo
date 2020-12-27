@@ -10,11 +10,16 @@ public partial class ResourceLoadManager
     public List<StageData> StageDatas => stageDatas;
 
     private string jsonString;
-    public string JsonString 
-    { 
-        get => jsonString; 
-        set 
-        { 
+    public string JsonString
+    {
+        get
+        {
+            jsonString = JsonConvert.SerializeObject(stageDatas);
+            return jsonString;
+        }
+
+        set
+        {
             jsonString = value;
 
             // Load Error, Invoke LoadFailData
@@ -29,7 +34,6 @@ public partial class ResourceLoadManager
                 for (int i = 0; i < TOTAL_STAGE_COUNT; i++)
                     stageDatas.Add(new StageData());
 
-                jsonString = JsonConvert.SerializeObject(stageDatas);
                 GoogleManager.Instance.SaveCloud();
 
                 Debug.Log("Load Data : No Data");
@@ -41,6 +45,6 @@ public partial class ResourceLoadManager
 
                 Debug.Log("Load Data : Yes Data");
             }
-        } 
+        }
     }
 }

@@ -3,20 +3,46 @@ using UnityEngine.UI;
 
 public class StageSelect : MonoBehaviour
 {
-    private Image[] stars;
+    #region Variables
 
-    private void Awake()
+    private Image[] stars = new Image[3];
+
+    private Image GetStar(int index)
     {
-        stars = new Image[3];
+        if (stars[index] == null)
+            stars[index] = transform.GetChild(index + 1).GetComponent<Image>();
 
-        for (int i = 0; i < 3; i++)
-            stars[i] = transform.GetChild(i + 1).GetComponent<Image>();
+        return stars[index];
     }
 
-    public void SetStar(bool clear, bool command, bool survive)
+    private Button btn;
+    private Button Btn
     {
-        stars[0].sprite = ResourceLoadManager.Instance.GetSprite(clear   ? "starOn" : "starOff");
-        stars[1].sprite = ResourceLoadManager.Instance.GetSprite(command ? "starOn" : "starOff");
-        stars[2].sprite = ResourceLoadManager.Instance.GetSprite(survive ? "starOn" : "starOff");
+        get
+        {
+            if (btn == null) btn = GetComponent<Button>();
+
+            return btn;
+        }
+    }
+
+    #endregion
+
+    public void SetStar(bool interactable, bool clear, bool command, bool survive)
+    {
+        Btn.interactable = interactable;
+
+        if (interactable)
+        {
+            GetStar(0).sprite = ResourceLoadManager.Instance.GetSprite(clear ? "starOn" : "starOff");
+            GetStar(1).sprite = ResourceLoadManager.Instance.GetSprite(command ? "starOn" : "starOff");
+            GetStar(2).sprite = ResourceLoadManager.Instance.GetSprite(survive ? "starOn" : "starOff");
+        }
+        else
+        {
+            GetStar(0).gameObject.SetActive(false);
+            GetStar(1).gameObject.SetActive(false);
+            GetStar(2).gameObject.SetActive(false);
+        }
     }
 }
