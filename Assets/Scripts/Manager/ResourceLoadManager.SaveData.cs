@@ -9,6 +9,11 @@ public partial class ResourceLoadManager
     private List<StageData> stageDatas = new List<StageData>();
     public List<StageData> StageDatas => stageDatas;
 
+    public void SetStageDatas(int stageNum, bool clear, bool command, bool survive)
+    {
+        stageDatas[stageNum - 1].SetData(clear, command, survive);
+    }
+
     private string jsonString;
     public string JsonString
     {
