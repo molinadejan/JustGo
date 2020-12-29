@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityEvent playEvent;
     [SerializeField] private UnityEvent clearEvent;
     [SerializeField] private UnityEvent retryEvent;
+    [SerializeField] private UnityEvent saveFailEvent;
 
     private WaitForSeconds waitForSeconds;
 
@@ -88,10 +89,29 @@ public class GameManager : MonoBehaviour
     // 스테이지 클리어 동작
     public void ClearStage()
     {
-        clearEvent?.Invoke();
         CheckClearStar();
-        HighlightUI.Instance.HighlightUIDisable();
-        ArrowUI.Instance.ArrowUIDisable();
+
+        StartCoroutine(ClearStageCor());
+    }
+
+    private IEnumerator ClearStageCor()
+    {
+        GoogleManager.Instance.SaveCloud();
+
+        yield return new WaitUntil(() => GoogleManager.Instance.IsSaveProcess == false);
+
+        if(GoogleManager.Instance.IsSaveSuccess)
+        {
+            clearEvent?.Invoke();
+            HighlightUI.Instance.HighlightUIDisable();
+            ArrowUI.Instance.ArrowUIDisable();
+        }
+        else
+        {
+            saveFailEvent?.Invoke();
+        }
+
+        yield return null;
     }
 
     // 스테이지 재시작 동작

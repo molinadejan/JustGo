@@ -18,8 +18,16 @@ public partial class GoogleManager
         return PlayGamesPlatform.Instance.SavedGame;
     }
 
+    private bool isSaveProcess;
+    public bool IsSaveProcess => isSaveProcess;
+
+    private bool isSaveSuccess;
+    public bool IsSaveSuccess => isSaveSuccess;
+
     public void SaveCloud()
     {
+        isSaveProcess = true;
+
         SavedGame().OpenWithAutomaticConflictResolution(SAVED_DATA,
             DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLastKnownGood, SaveGame);
 
@@ -36,19 +44,27 @@ public partial class GoogleManager
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(ResourceLoadManager.Instance.JsonString);
             SavedGame().CommitUpdate(game, update, bytes, SaveData);
         }
+        else
+        {
+            isSaveSuccess = false;
+            isSaveProcess = false;
+        }
     }
-
 
     private void SaveData(SavedGameRequestStatus status, ISavedGameMetadata game)
     {
+        isSaveProcess = false;
+
         Debug.Log("Save Data");
 
         if (status == SavedGameRequestStatus.Success)
         {
+            isSaveSuccess = true;
             Debug.Log("Save Data Success");
         }
         else
         {
+            isSaveSuccess = false;
             Debug.Log("Save Data Failed");
         }
     }

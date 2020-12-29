@@ -22,8 +22,6 @@ public partial class GoogleManager : MonoBehaviour
     {
         GoogleLoadSaveInit();
         GoogleLoginInit();
-
-        Login();
     }
 
     public bool CheckInternetConnected()
