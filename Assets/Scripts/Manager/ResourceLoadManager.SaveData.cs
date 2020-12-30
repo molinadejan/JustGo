@@ -7,7 +7,7 @@ public partial class ResourceLoadManager
 {
     private const int TOTAL_STAGE_COUNT = 24;
 
-   [SerializeField] private List<StageData> stageDatas = new List<StageData>();
+    private List<StageData> stageDatas = new List<StageData>();
     public List<StageData> StageDatas => stageDatas;
 
     public void SetStageDatas(int stageNum, bool clear, bool command, bool survive)
@@ -29,15 +29,18 @@ public partial class ResourceLoadManager
         }
     }
 
+    private string dirPath  = Application.persistentDataPath + "/SavedData";
+    private string filePath = Application.persistentDataPath + "/SavedData/save.json";
+
     private void CheckDataOnStart()
     {
         Debug.Log(Application.persistentDataPath);
 
         // 저장 디렉토리가 없을 경우 생성해준다.
-        if(!Directory.Exists(Application.persistentDataPath + "/SavedData"))
+        if(!Directory.Exists(dirPath))
         {
             Debug.Log("No Directory : Create new Directory");
-            Directory.CreateDirectory(Application.persistentDataPath + "/SavedData");
+            Directory.CreateDirectory(dirPath);
         }
         else
         {
@@ -45,7 +48,7 @@ public partial class ResourceLoadManager
         }
 
         // 저장 파일이 없을 경우 새로 생성해준다.
-        if(!File.Exists(Application.persistentDataPath + "/SavedData/save.json"))
+        if(!File.Exists(filePath))
         {
             Debug.Log("No Data : Create New Data");
 
@@ -68,18 +71,17 @@ public partial class ResourceLoadManager
     {
         string str = JsonConvert.SerializeObject(stageDatas);
 
-        string path = Application.persistentDataPath + "/SavedData/save.json";
         FileStream file;
 
-        if (File.Exists(path))
+        if (File.Exists(filePath))
         {
             //Debug.Log("file Exist");
-            file = new FileStream(path, FileMode.Truncate, FileAccess.Write);
+            file = new FileStream(filePath, FileMode.Truncate, FileAccess.Write);
         }
         else
         {
             //Debug.Log("file Not Exist");
-            file = new FileStream(path, FileMode.Create, FileAccess.Write);
+            file = new FileStream(filePath, FileMode.Create, FileAccess.Write);
         }
 
         StreamWriter sw = new StreamWriter(file);
@@ -93,8 +95,7 @@ public partial class ResourceLoadManager
     {
         string ret = null;
 
-        string path = Application.persistentDataPath + "/SavedData/save.json";
-        FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read);
+        FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read);
 
         StreamReader sr = new StreamReader(file);
         ret = sr.ReadLine();
