@@ -16,10 +16,16 @@ public partial class ResourceLoadManager : MonoBehaviour
 
             LoadSprites();
             LoadPrefabs();
+            Input.multiTouchEnabled = false;
         }
         else
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        CheckDataOnStart();
     }
 }

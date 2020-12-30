@@ -29,12 +29,12 @@ public partial class GoogleManager
         isSaveProcess = true;
 
         SavedGame().OpenWithAutomaticConflictResolution(SAVED_DATA,
-            DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLastKnownGood, SaveGame);
+            DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLastKnownGood, SaveGameToServer);
 
         Debug.Log("Save Cloud");
     }
 
-    private void SaveGame(SavedGameRequestStatus status, ISavedGameMetadata game)
+    private void SaveGameToServer(SavedGameRequestStatus status, ISavedGameMetadata game)
     {
         Debug.Log("Save Game");
 
@@ -42,7 +42,7 @@ public partial class GoogleManager
         {
             var update = new SavedGameMetadataUpdate.Builder().Build();
             byte[] bytes = System.Text.Encoding.UTF8.GetBytes(ResourceLoadManager.Instance.JsonString);
-            SavedGame().CommitUpdate(game, update, bytes, SaveData);
+            SavedGame().CommitUpdate(game, update, bytes, SaveDataToServer);
         }
         else
         {
@@ -51,7 +51,7 @@ public partial class GoogleManager
         }
     }
 
-    private void SaveData(SavedGameRequestStatus status, ISavedGameMetadata game)
+    private void SaveDataToServer(SavedGameRequestStatus status, ISavedGameMetadata game)
     {
         isSaveProcess = false;
 
@@ -73,32 +73,30 @@ public partial class GoogleManager
     public void LoadCloud()
     {
         SavedGame().OpenWithAutomaticConflictResolution(SAVED_DATA,
-            DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLastKnownGood, LoadGame);
+            DataSource.ReadCacheOrNetwork, ConflictResolutionStrategy.UseLastKnownGood, LoadGameFromServer);
 
         Debug.Log("Load Cloud");
     }
 
-    private void LoadGame(SavedGameRequestStatus status, ISavedGameMetadata game)
+    private void LoadGameFromServer(SavedGameRequestStatus status, ISavedGameMetadata game)
     {
         if (status == SavedGameRequestStatus.Success)
-            SavedGame().ReadBinaryData(game, LoadData);
+            SavedGame().ReadBinaryData(game, LoadDataFromServer);
 
         Debug.Log("Load Game");
     }
 
-    private void LoadData(SavedGameRequestStatus status, byte[] LoadedData)
+    private void LoadDataFromServer(SavedGameRequestStatus status, byte[] LoadedData)
     {
         Debug.Log("Load Data");
 
         if (status == SavedGameRequestStatus.Success)
         {
             ResourceLoadManager.Instance.JsonString = System.Text.Encoding.UTF8.GetString(LoadedData);
-            MainMenuManager.Instance.LoadSuccess();
         }
         else
         {
             ResourceLoadManager.Instance.JsonString = "LoadError";
-            MainMenuManager.Instance.LoadFail();
         }
     }
 }

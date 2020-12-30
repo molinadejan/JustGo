@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    [SerializeField] private int stageNum;
     [SerializeField] private List<QueueObject> qObjects;
     [SerializeField] private int maxCommand;
 
@@ -42,8 +43,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Input.multiTouchEnabled = false;
-
         for (int i = 0; i < qObjects.Count; i++)
             qObjects[i].order.sprite = ResourceLoadManager.Instance.GetSprite((i + 1).ToString());
 
@@ -90,28 +89,11 @@ public class GameManager : MonoBehaviour
     public void ClearStage()
     {
         CheckClearStar();
+        clearEvent?.Invoke();
+        HighlightUI.Instance.HighlightUIDisable();
+        ArrowUI.Instance.ArrowUIDisable();
 
-        StartCoroutine(ClearStageCor());
-    }
-
-    private IEnumerator ClearStageCor()
-    {
-        GoogleManager.Instance.SaveCloud();
-
-        yield return new WaitUntil(() => GoogleManager.Instance.IsSaveProcess == false);
-
-        if(GoogleManager.Instance.IsSaveSuccess)
-        {
-            clearEvent?.Invoke();
-            HighlightUI.Instance.HighlightUIDisable();
-            ArrowUI.Instance.ArrowUIDisable();
-        }
-        else
-        {
-            saveFailEvent?.Invoke();
-        }
-
-        yield return null;
+        ResourceLoadManager.Instance.SaveDataToLocal();
     }
 
     // 스테이지 재시작 동작
@@ -141,6 +123,7 @@ public class GameManager : MonoBehaviour
             if (!priest.gameObject.activeSelf) ++totalDeath;
         }
 
+        ResourceLoadManager.Instance.UpdateStageData(stageNum, true, totalCommand <= maxCommand, totalDeath == 0);
         ResultUI.Instance.ResultUIEnable(totalCommand, totalCommand <= maxCommand, totalDeath);
     }
 

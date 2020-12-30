@@ -30,12 +30,6 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        if (!GoogleManager.Instance.IsLogin)
-            GoogleManager.Instance.Login();
-    }
-
     public void OpenStageSelect()
     {
         bool check = true;

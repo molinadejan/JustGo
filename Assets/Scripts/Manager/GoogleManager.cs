@@ -20,8 +20,8 @@ public partial class GoogleManager : MonoBehaviour
 
     private void Start()
     {
-        GoogleLoadSaveInit();
-        GoogleLoginInit();
+        //GoogleLoadSaveInit();
+        //GoogleLoginInit();
     }
 
     public bool CheckInternetConnected()
