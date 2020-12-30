@@ -5,7 +5,7 @@ using UnityEngine;
 
 public partial class ResourceLoadManager
 {
-    private const int TOTAL_STAGE_COUNT = 24;
+    private const int TOTAL_STAGE_COUNT = 16;
 
     private List<StageData> stageDatas = new List<StageData>();
     public List<StageData> StageDatas => stageDatas;
@@ -29,12 +29,13 @@ public partial class ResourceLoadManager
         }
     }
 
-    private string dirPath  = Application.persistentDataPath + "/SavedData";
-    private string filePath = Application.persistentDataPath + "/SavedData/save.json";
+    private string dirPath;
+    private string filePath;
 
     private void CheckDataOnStart()
     {
-        Debug.Log(Application.persistentDataPath);
+        dirPath = Application.persistentDataPath + "/SavedData";
+        filePath = Application.persistentDataPath + "/SavedData/save.json";
 
         // 저장 디렉토리가 없을 경우 생성해준다.
         if(!Directory.Exists(dirPath))

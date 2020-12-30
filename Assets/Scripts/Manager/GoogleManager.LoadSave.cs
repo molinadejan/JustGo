@@ -1,4 +1,5 @@
-﻿using GooglePlayGames;
+﻿/*
+using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 using UnityEngine;
@@ -100,3 +101,4 @@ public partial class GoogleManager
         }
     }
 }
+*/

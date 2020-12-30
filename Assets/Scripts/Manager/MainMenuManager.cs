@@ -30,6 +30,11 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        OpenStageSelect();
+    }
+
     public void OpenStageSelect()
     {
         bool check = true;

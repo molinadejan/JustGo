@@ -18,12 +18,6 @@ public partial class GoogleManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //GoogleLoadSaveInit();
-        //GoogleLoginInit();
-    }
-
     public bool CheckInternetConnected()
     {
         return !(Application.internetReachability == NetworkReachability.NotReachable);
