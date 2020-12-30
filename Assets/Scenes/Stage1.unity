@@ -2630,14 +2630,6 @@ PrefabInstance:
       propertyPath: highlight
       value: 
       objectReference: {fileID: 495676477}
-    - target: {fileID: 1117191469, guid: e92764b44f99971428b81a2f37346f31, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 982762396}
-    - target: {fileID: 1495840569, guid: e92764b44f99971428b81a2f37346f31, type: 3}
-      propertyPath: m_Text
-      value: <= 5
-      objectReference: {fileID: 0}
     - target: {fileID: 767862894851087, guid: e92764b44f99971428b81a2f37346f31, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

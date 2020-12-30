@@ -39,6 +39,7 @@ public class MainMenuManager : MonoBehaviour
     {
         bool check = true;
 
+        Debug.Log(stageSelects.Count);
         for(int i = 0; i < stageSelects.Count; i++)
         {
             StageData data = ResourceLoadManager.Instance.StageDatas[i];
