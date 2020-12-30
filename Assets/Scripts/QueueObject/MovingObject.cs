@@ -114,6 +114,7 @@ public abstract partial class MovingObject : QueueObject
     // 초기화 시 원래 위치로 일단 이동
     public override void ResetFunc()
     {
+        Debug.Log(transform.name);
         transform.position = startPos;
         listIndex = 0;
         isOver = dirList.Count == 0 ? true : false;

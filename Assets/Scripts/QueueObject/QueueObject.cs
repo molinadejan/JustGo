@@ -11,7 +11,7 @@ public abstract class QueueObject : MonoBehaviour
     public static void InvokeResetDele() => resetDele.Invoke();
 
     public SpriteRenderer order;
-
+    
     // Queue Play시 동작할지 안 할지 체크하는 변수
     protected bool isOver;
     public bool IsOver => isOver;
@@ -37,4 +37,9 @@ public abstract class QueueObject : MonoBehaviour
     public abstract IEnumerator PlayOneTurnAction();
 
     public abstract void ResetFunc();
+
+    private void OnDestroy()
+    {
+        resetDele -= ResetFunc;
+    }
 }
