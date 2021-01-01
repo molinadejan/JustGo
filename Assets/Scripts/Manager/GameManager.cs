@@ -29,7 +29,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityEvent playEvent;
     [SerializeField] private UnityEvent clearEvent;
     [SerializeField] private UnityEvent retryEvent;
-    [SerializeField] private UnityEvent saveFailEvent;
 
     private WaitForSeconds waitForSeconds;
 

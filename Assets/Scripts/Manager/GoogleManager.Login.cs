@@ -1,4 +1,5 @@
-﻿using GooglePlayGames;
+﻿/*
+using GooglePlayGames;
 using UnityEngine;
 
 public partial class GoogleManager
@@ -29,3 +30,4 @@ public partial class GoogleManager
         });
     }
 }
+*/
